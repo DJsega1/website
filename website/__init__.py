@@ -7,6 +7,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db.sqlite"
 
 db = SQLAlchemy()
 db.init_app(app)
+db.create_all(app=app)
 
 from website.blueprints.main import main as main_blueprint
 app.register_blueprint(main_blueprint)

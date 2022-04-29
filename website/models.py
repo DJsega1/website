@@ -43,6 +43,12 @@ class Sex(db.Model):
     sex = db.Column(db.String(100), unique=True, nullable=False)
 
 
+class Size(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True,
+                   unique=True, nullable=False)
+    size = db.Column(db.String(100), unique=True, nullable=False)
+
+
 class Item(db.Model):
     article = db.Column(db.Integer, primary_key=True, autoincrement=True,
                         unique=True)
@@ -53,3 +59,6 @@ class Item(db.Model):
     material = db.Column(db.String(100), db.ForeignKey('material.id'), nullable=False)
     color = db.Column(db.Integer, db.ForeignKey('color.id'), nullable=False)
     sex = db.Column(db.Integer, db.ForeignKey('sex.id'), nullable=False)
+    size = db.Column(db.Integer, db.ForeignKey('size.id'), nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
