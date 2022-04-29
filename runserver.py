@@ -1,5 +1,5 @@
 import os
-from website import app
+from website import app, db
 
 
 def run():
@@ -10,6 +10,7 @@ def run():
     except ValueError:
         port = 5000
 
+    db.create_all(app=app)
     app.run(host, port)
 
 
