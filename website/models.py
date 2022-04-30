@@ -4,6 +4,7 @@ from website import db
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True,
                    unique=True, nullable=False)
+    public_id = db.Column(db.String(50), unique=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     first_name = db.Column(db.String(100), nullable=False)
