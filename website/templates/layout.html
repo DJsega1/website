@@ -7,7 +7,7 @@
         <link
                 rel="shortcut icon"
                 type="image/x-icon"
-                href="{{ url_for('static', filename='images/icon.ico') }}"
+                href="{{ url_for('static', filename='images/icon.png') }}"
         />
         <link
                 href="https://fonts.googleapis.com/css2?family=Arvo&display=swap"
@@ -46,7 +46,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ url_for('main.index') }}">Adidas</a>
+    <a class="navbar-brand" href="{{ url_for('main.index') }}" style="">Lorem Ipsum</a>
     <button
             class="navbar-toggler"
             type="button"
@@ -90,5 +90,59 @@
     </div>
 </nav>
 {% block content %} {% endblock %}
+<footer>
+    <div class="width-wrapper">
+        <div class="footer-inner">
+            <details class="footer-item" open="open">
+                <summary class="footer-title">Помощь</summary>
+                <div class="footer-details">
+                    <a class="footer-link" href="">Статус заказа по номеру</a>
+                    <a class="footer-link" href="">Центр поддержки</a>
+                    <a class="footer-link" href="">Как оформить заказ</a>
+                    <a class="footer-link" href="">Как выбрать размер</a>
+                    <a class="footer-link" href="">Условия доставки</a>
+                    <a class="footer-link" href="">Мои заказы</a>
+                    <a class="footer-link" href="">Возврат</a>
+                    <a class="footer-link" href="">Публичная оферта</a>
+                    <a class="footer-link" href="">Программа лояльности</a>
+                    <a class="footer-link" href="">Часто задаваемые вопросы</a>
+                </div>
+            </details>
+            <details class="footer-item" open="open">
+                <summary class="footer-title">О нас</summary>
+                <div class="footer-details">
+                    <a class="footer-link" href="">Вакансии</a>
+                    <a class="footer-link" href="">ВКонтакте</a>
+                    <a class="footer-link" href="">YouTube</a>
+                    <a class="footer-link" href="">Instagram</a>
+                    <a class="footer-link" href="">Telegram</a>
+                    <a class="footer-link" href="">TikTok</a>
+                </div>
+            </details>
+            <details class="footer-item" open="open">
+                <summary class="footer-title">Доставка с примеркой</summary>
+                <div class="footer-details">
+                    <p class="footer-link">У нас есть собственная служба доставки Lamoda Express,
+                        которая работает в 66 крупнейших городах России: Москва и МО, Санкт-Петербург, Нижний Новгород,
+                        Новосибирск, Екатеринбург, Самара, Тольятти, Тюмень, Челябинск и другие. Срок доставки — 1-2 дня.
+                        Бесплатная доставка по всей России! Примерьте перед покупкой! Интернет-магазин Lamoda даёт
+                        возможность примерить одежду, обувь и другие товары перед оплатой заказа курьеру.
+                        Оплачивайте только то, что вам подошло и понравилось!</p>
+                </div>
+            </details>
+            <details class="footer-item" open="open">
+                <summary class="footer-title">Оплата и возврат</summary>
+                <div class="footer-details">
+                    <p class="footer-link">Интернет-магазин одежды и обуви Lamoda.ru
+                        позволяет вернуть товар в течение 14 дней с момента покупки. Вернуть товары можно
+                        как с курьером до оплаты заказа, так и по почте или в одном из пунктов выдачи заказов в Москве.
+                        Вы можете оплатить покупки не только наличными, но и банковскими картами. У всех курьеров Lamoda
+                        Express при себе есть терминал для оплаты картами.
+                        Теперь купить обувь и одежду можно в 2 клика, не выходя из дома!</p>
+                </div>
+            </details>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
