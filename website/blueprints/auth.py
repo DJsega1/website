@@ -28,16 +28,14 @@ def token_required(f):
         except Exception:
             return make_response("Invalid token", 401)
         return f((current_user, is_admin), *args, **kwargs)
+
     return decorated()
 
 
-@auth.route('/signup')
-def signup_page():
-    return render_template("signup.html")
-
-
-@auth.route('/signup', methods=['POST'])
+@auth.route('/signup', methods=['POST', 'GET'])
 def signup():
+    if request.method == 'GET':
+        return render_template("signup.html")
     reg_data = request.form
     first_name, last_name, email = reg_data.get("first_name"), reg_data.get("last_name"), reg_data.get("email")
     address, postcode, cart = reg_data.get("address"), reg_data.get("postcode"), reg_data.get("cart")
@@ -58,13 +56,10 @@ def signup():
         return make_response("User already exist", 202)
 
 
-@auth.route("/login")
-def login_page():
-    return render_template("login.html")
-
-
 @auth.route('/login', methods=['POST', 'GET'])
 def login():
+    if request.method == 'GET':
+        return render_template("login.html")
     auth_data = request.form
     email = auth_data.get('email')
     password = auth_data.get('password')
@@ -87,7 +82,8 @@ def login():
 
 
 @auth.route("/logout")
+@token_required
 def logout(user):
     resp = make_response(redirect(url_for("main.index"), 302))
-    resp.set_cookie('SESSION_TOKEN', '', expires=0)
+    resp.delete_cookie('SESSION_TOKEN')
     return resp
