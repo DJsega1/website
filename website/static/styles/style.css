@@ -1,0 +1,46 @@
+div {
+    display: block;
+}
+.choose {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 80px;
+    font-size: 34px;
+}
+.mainpage-banners {
+    width: 1200px;
+    margin: 0 auto;
+}
+.mainpage-banners a {
+    width: 33%;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    border-left: 1px solid #fff;
+    background-repeat: no-repeat;
+    background-position: center 0;
+    background-size: cover;
+    font-size: 0px;
+}
+
+.mainpage-banners .banner-text {
+    display: flex;
+    background-color: rgba(0,0,0,.6);
+    color: #fff;
+    font-weight: 300;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    transition: background-color .2s linear;
+    height: 55px;
+    font-size: 27px;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainpage-banners a:hover .banner-text {
+    background-color: rgba(0,0,0);
+}
