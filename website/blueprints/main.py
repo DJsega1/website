@@ -5,7 +5,11 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    # TODO: Добавить сессию пользователя
+    params = {
+        "logined": False
+    }
+    return render_template('index.html', **params)
 
 
 @main.route('/profile')
