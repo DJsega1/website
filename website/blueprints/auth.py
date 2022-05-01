@@ -82,7 +82,7 @@ def login():
 
 
 @auth.route("/logout")
-@token_required
+# @token_required
 def logout(user):
     resp = make_response(redirect(url_for("main.index"), 302))
     resp.delete_cookie('SESSION_TOKEN')

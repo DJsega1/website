@@ -1,3 +1,11 @@
+* {
+    cursor: default;
+}
+
+a {
+    cursor: pointer;
+}
+
 a:hover {
     text-decoration: none;
 }
@@ -41,6 +49,7 @@ div {
     background-size: cover;
     font-size: 0px;
     margin-bottom: 80px;
+    cursor: pointer;
 }
 
 .mainpage-banners .banner-text {
@@ -103,10 +112,30 @@ div {
     width: auto;
     color: #000;
     margin: 0 0 10px;
-    cursor: pointer;
 }
 
 .footer-link:hover {
+    color: #888;
+    transition: .2s linear;
+    transition-property: all;
+}
+
+.header-choose {
+    display: flex;
+    position: relative;
+    width: fit-content;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.header-choose a {
+    margin: 0 24px;
+    color: #000;
+    font-weight: lighter;
+    cursor: pointer;
+}
+
+.header-choose a:hover {
     color: #888;
     transition: .2s linear;
     transition-property: all;

@@ -45,49 +45,41 @@
     {% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="display: flex; justify-content: space-between;">
     <a class="navbar-brand" href="{{ url_for('main.index') }}" style="">Lorem Ipsum</a>
-    <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-    ><span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto"></ul>
-        <form class="form-inline my-2 my-lg-0">
-            {% if logined %}
+    <div class="header-choose">
+        <a href="/women">Женщинам</a>
+        <a href="/men">Мужчинам</a>
+        <a href="/kids">Детям</a>
+    </div>
+    <div>
+        {% if logined %}
             <a
                     href="{{ url_for('main.profile') }}"
                     class="btn btn-outline-primary"
                     role="button"
                     style="margin-left: 4px;"
-            >Account</a>
+            >Профиль</a>
             <a
                     href="{{ url_for('main.profile') }}"
                     class="btn btn-outline-danger"
                     role="button"
                     style="margin-left: 4px;"
-            >Log out</a>
-            {% else %}
+            >Выйти</a>
+            </div>
+        {% else %}
             <a
                     href="{{ url_for('auth.signup') }}"
                     class="btn btn-outline-primary"
                     role="button"
-            >Signup</a>
+            >Регистрация</a>
             <a
                     href="{{ url_for('auth.login') }}"
                     class="btn btn-outline-primary"
                     role="button"
                     style="margin-left: 4px;"
-            >Login</a>
-            {% endif %}
-        </form>
-    </div>
+            >Войти</a>
+        {% endif %}
 </nav>
 {% block content %} {% endblock %}
 <footer>
@@ -124,7 +116,8 @@
                 <div class="footer-details">
                     <p class="footer-link">У нас есть собственная служба доставки Lamoda Express,
                         которая работает в 66 крупнейших городах России: Москва и МО, Санкт-Петербург, Нижний Новгород,
-                        Новосибирск, Екатеринбург, Самара, Тольятти, Тюмень, Челябинск и другие. Срок доставки — 1-2 дня.
+                        Новосибирск, Екатеринбург, Самара, Тольятти, Тюмень, Челябинск и другие. Срок доставки — 1-2
+                        дня.
                         Бесплатная доставка по всей России! Примерьте перед покупкой! Интернет-магазин Lamoda даёт
                         возможность примерить одежду, обувь и другие товары перед оплатой заказа курьеру.
                         Оплачивайте только то, что вам подошло и понравилось!</p>

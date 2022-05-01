@@ -10,11 +10,11 @@ db = SQLAlchemy()
 db.init_app(app)
 
 from website.blueprints.main import main as main_blueprint
-
 app.register_blueprint(main_blueprint)
 from website.blueprints.auth import auth as auth_blueprint
-
 app.register_blueprint(auth_blueprint)
+from website.blueprints.men import men as men_blueprint
+app.register_blueprint(men_blueprint)
 
 import website.views
 import website.models
