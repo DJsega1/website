@@ -1,10 +1,13 @@
 from website import db
+from flask_login import UserMixin
+from website import login_manager
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True,
                    unique=True, nullable=False)
     public_id = db.Column(db.String(50), unique=True)
+    is_admin = db.Column(db.Boolean, nullable=False)
     email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     first_name = db.Column(db.String(100), nullable=False)
@@ -63,3 +66,8 @@ class Item(db.Model):
     size = db.Column(db.Integer, db.ForeignKey('size.id'), nullable=False)
     amount = db.Column(db.Integer, nullable=False)
     price = db.Column(db.Integer, nullable=False)
+
+
+@login_manager.user_loader
+def load_user(public_id):
+    return User.query.get(public_id)
