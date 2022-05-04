@@ -17,12 +17,14 @@ auth = Blueprint('auth', __name__)
 def signup():
     reg_data = RegisterForm(request.form)
     if not reg_data.validate_on_submit():
+        print(reg_data.errors.items())
         return render_template("signup.html", form=reg_data)
     first_name, last_name, email = reg_data.first_name.data, reg_data.last_name.data, reg_data.email.data
     address, postcode, cart = reg_data.address.data, reg_data.postcode.data, reg_data.cart.data
     password = reg_data.password.data
     if not User.query.filter_by(email=email).first():
         user = User(public_id=str((uuid.uuid4())),
+                    is_admin=False,
                     email=email,
                     password=generate_password_hash(password),
                     first_name=first_name,
@@ -32,15 +34,10 @@ def signup():
                     cart=cart)
         db.session.add(user)
         db.session.commit()
-        login_user()
+        login_user(user)
         return redirect(url_for("main.index"), 301)
     else:
-        return make_response("User already exist", 202)
-
-
-@auth.route("/login")
-def login_page():
-    return render_template("login.html")
+        return render_template("signup.html", form=reg_data, errors=["User already exists"])
 
 
 @auth.route('/login', methods=['POST', 'GET'])

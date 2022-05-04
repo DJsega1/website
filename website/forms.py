@@ -7,7 +7,7 @@ class Postcode:
     def __call__(self, form, field):
         try:
             int(field.data)
-            if len(field.data) != 9:
+            if len(field.data) != 6:
                 raise ValidationError("This is not a valid postcode")
         except ValueError:
             raise ValidationError("This is not a valid postcode")
@@ -22,7 +22,7 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
     email = StringField("email", validators=[DataRequired(), Email()])
     password = PasswordField("password", validators=[DataRequired(), Length(min=8)])
-    repeated_password = PasswordField("repeated_password", validators=[DataRequired(), EqualTo(password)])
+    repeated_password = PasswordField("repeated_password", validators=[DataRequired(), EqualTo('password')])
     first_name = StringField("first_name", validators=[DataRequired()])
     last_name = StringField("second_name", validators=[DataRequired()])
     address = StringField("address", validators=[DataRequired()])
