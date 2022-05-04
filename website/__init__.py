@@ -21,5 +21,7 @@ app.register_blueprint(auth_blueprint)
 
 import website.views
 import website.models
+import website.forms
+import website.utils
 
 db.create_all(app=app)

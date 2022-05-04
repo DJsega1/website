@@ -3,7 +3,7 @@ from flask_login import UserMixin
 from website import login_manager
 
 
-class User(UserMixin, db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True,
                    unique=True, nullable=False)
     public_id = db.Column(db.String(50), unique=True)

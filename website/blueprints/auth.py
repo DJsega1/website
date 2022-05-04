@@ -5,6 +5,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from website.models import User
 from website import db
 from website import app
+from website.forms import RegisterForm, LoginForm
+from website.utils.additional_functions import no_cache
 import uuid
 
 
@@ -13,12 +15,12 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/signup', methods=['POST', 'GET'])
 def signup():
-    if request.method == 'GET':
-        return render_template("signup.html")
-    reg_data = request.form
-    first_name, last_name, email = reg_data.get("first_name"), reg_data.get("last_name"), reg_data.get("email")
-    address, postcode, cart = reg_data.get("address"), reg_data.get("postcode"), reg_data.get("cart")
-    password = reg_data.get("password")
+    reg_data = RegisterForm(request.form)
+    if not reg_data.validate_on_submit():
+        return render_template("signup.html", form=reg_data)
+    first_name, last_name, email = reg_data.first_name.data, reg_data.last_name.data, reg_data.email.data
+    address, postcode, cart = reg_data.address.data, reg_data.postcode.data, reg_data.cart.data
+    password = reg_data.password.data
     if not User.query.filter_by(email=email).first():
         user = User(public_id=str((uuid.uuid4())),
                     email=email,
@@ -38,26 +40,24 @@ def signup():
 
 @auth.route('/login', methods=['POST', 'GET'])
 def login():
-    if request.method == 'GET':
-        return render_template("login.html")
-    auth_data = request.form
-    email = auth_data.get('email')
-    password = auth_data.get('password')
-    remember = True if auth_data.get("remember") else False
-    if not auth_data or not email or not password:
-        return make_response("Some fields are clear", 401)
+    auth_data = LoginForm(request.form)
+    if not auth_data.validate_on_submit():
+        return render_template("login.html", form=auth_data, errors=[])
+    email = auth_data.email.data
+    password = auth_data.password.data
+    remember = auth_data.remember.data
     user = User.query.filter_by(email=email).first()
-    if not user:
-        return make_response("Invalid password or login", 401)
-    user_password_hash = user.password
-    if not check_password_hash(user_password_hash, password):
-        return make_response("Invalid password or login", 401)
-    login_user(user)
-    resp = redirect(url_for("main.index"), 301)
-    return resp
+    if user:
+        user_password_hash = user.password
+        if check_password_hash(user_password_hash, password):
+            login_user(user, remember=remember)
+            return redirect(url_for("main.index"), 301)
+    return render_template("login.html", form=auth_data, errors=["Login or password are incorrect"])
 
 
 @auth.route("/logout")
+@no_cache
 def logout():
     logout_user()
-    return redirect(url_for("main.index"), 301)
+    resp = redirect(url_for("main.index"), 301)
+    return resp
