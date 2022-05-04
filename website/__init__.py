@@ -18,6 +18,8 @@ from website.blueprints.auth import auth as auth_blueprint
 app.register_blueprint(auth_blueprint)
 from website.blueprints.shop import shop as shop_blueprint
 app.register_blueprint(shop_blueprint)
+from website.blueprints.admin import admin as admin_blueprint
+app.register_blueprint(admin_blueprint)
 
 import website.views
 import website.models

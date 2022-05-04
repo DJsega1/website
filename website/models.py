@@ -22,11 +22,17 @@ class Brand(db.Model):
                    unique=True, nullable=False)
     brand = db.Column(db.String(100), unique=True, nullable=False)
 
+    def __repr__(self):
+        return self.brand
+
 
 class Type(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True,
                    unique=True, nullable=False)
     type = db.Column(db.String(100), unique=True, nullable=False)
+
+    def __repr__(self):
+        return self.type
 
 
 class Material(db.Model):
@@ -34,11 +40,17 @@ class Material(db.Model):
                    unique=True, nullable=False)
     material = db.Column(db.String(100), unique=True, nullable=False)
 
+    def __repr__(self):
+        return self.material
+
 
 class Color(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True,
                    unique=True, nullable=False)
     color = db.Column(db.String(100), unique=True, nullable=False)
+
+    def __repr__(self):
+        return self.color
 
 
 class Sex(db.Model):
@@ -46,11 +58,17 @@ class Sex(db.Model):
                    unique=True, nullable=False)
     sex = db.Column(db.String(100), unique=True, nullable=False)
 
+    def __repr__(self):
+        return self.sex
+
 
 class Size(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True,
                    unique=True, nullable=False)
     size = db.Column(db.String(100), unique=True, nullable=False)
+
+    def __repr__(self):
+        return self.size
 
 
 class Item(db.Model):
