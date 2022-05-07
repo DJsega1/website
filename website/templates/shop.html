@@ -14,7 +14,34 @@
         </div>
     </div>
     <section class="py-5">
-        <div class="container px-4 px-lg-5 mt-5">
+        <div class="container px-4 px-lg-5 mt-5" style="display: flex; flex-direction: row;" id="items">
+            <form class="filters" method="post">
+                <details style="margin-bottom: 1rem;">
+                    <summary>Бренды</summary>
+                    {% for brand in brand_list %}
+                        <input type="checkbox" name="brand" value={{ brand }}>  {{ brand }}<br>
+                    {% endfor %}
+                </details>
+                <details style="margin-bottom: 1rem;">
+                    <summary>Материал</summary>
+                    {% for material in material_list %}
+                        <input type="checkbox" name="material" value={{ material }}>  {{ material }}<br>
+                    {% endfor %}
+                </details>
+                <details style="margin-bottom: 1rem;">
+                    <summary>Цвет</summary>
+                    {% for color in color_list %}
+                        <input type="checkbox" name="color" value={{ color }}>  {{ color }}<br>
+                    {% endfor %}
+                </details>
+                <details style="margin-bottom: 1rem;">
+                    <summary>Тип одежды</summary>
+                    {% for type in type_list %}
+                        <input type="checkbox" name="type" value="{{ type }}">  {{ type }}<br>
+                    {% endfor %}
+                </details>
+                <button type="submit" class="c-button">Применить фильтры</button>
+            </form>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <div class="col mb-5">
                     <div class="card h-100">
@@ -228,7 +255,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div></div>
         </div>
     </section>
 {% endblock %}
