@@ -4,13 +4,19 @@ from website.models import *
 shop = Blueprint('shop', __name__)
 
 
-@shop.route('/men')
+@shop.route('/men', methods=['GET', 'POST'])
 def men():
     items = Item.query.filter(Item.sex == 1).all()
     params = {
         "title": "Мужская одежда",
+        "brand_list": Brand.query.all(),
+        "material_list": Material.query.all(),
+        "color_list": Color.query.all(),
+        "type_list": Type.query.all(),
         "logined": True
     }
+    if request.method == "POST":
+        print(request.form)
     return render_template('shop.html', **params)
 
 
@@ -21,6 +27,8 @@ def women():
         "title": "Женская одежда",
         "logined": True
     }
+    if request.method == "POST":
+        print(request.form)
     return render_template('shop.html', **params)
 
 
@@ -31,4 +39,6 @@ def kids():
         "title": "Детская одежда",
         "logined": True
     }
+    if request.method == "POST":
+        print(request.form)
     return render_template('shop.html', **params)
