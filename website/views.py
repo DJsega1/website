@@ -1,6 +1,6 @@
 from website import app
 
 
-@app.route("/test_view")
+@app.route("/5up3r_s3cr3t_34st3r_egg")
 def test_view():
-    return "Hello, world"
+    return "flag{w0w_y0u_f1nd_m3}"

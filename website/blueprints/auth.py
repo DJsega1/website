@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, make_response
-from flask import redirect, url_for
+from flask import redirect, url_for, session
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from website.models import User
@@ -52,6 +52,7 @@ def login():
     if user:
         user_password_hash = user.password
         if check_password_hash(user_password_hash, password):
+            session["public_id"] = user.public_id
             login_user(user, remember=remember)
             return redirect(url_for("main.index"), 301)
     return render_template("login.html", form=auth_data, errors=["Login or password are incorrect"])

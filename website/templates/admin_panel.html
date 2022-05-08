@@ -11,45 +11,136 @@
     <title>{{ title }}</title>
 </head>
 <body style="margin: 5% 20%;">
+<div class="error-messages">
+    {% if errors %}
+    {% for error in errors %}
+    <div class="message-header">
+        <p>Error</p>
+    </div>
+    <div class="message-body">
+        {{ error }}
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
 <div>
-    <form class="login_form" enctype="multipart/form-data" method="post">
+    <form class="login_form" enctype="multipart/form-data" method="post" action="/admin">
+        {{ form.hidden_tag() }}
         <h1>Добавить вещь</h1>
-        <input class="form-control" placeholder="Введите артикул" name="article" type="number">
-        <input class="form-control" placeholder="Введите название" name="name" type="text">
-        <input class="form-control" placeholder="Введите описание" name="description" type="text">
-        <input class="form-control" placeholder="Введите цену" name="price" type="number">
-        <input class="form-control" placeholder="Введите количество на складе" name="amount" type="number">
-        <select class="form-select" name="brand" required>
-            <option disabled selected>Выберите бренд</option>
-            {% for brand in brand_list %}
-                <option>{{ brand }}</option>
-            {% endfor %}
-        </select>
-        <select class="form-select" name="material" required>
-            <option disabled selected>Выберите материал</option>
-            {% for material in material_list %}
-                <option>{{ material }}</option>
-            {% endfor %}
-        </select>
-        <select class="form-select" name="color" required>
-            <option disabled selected>Выберите цвет</option>
-            {% for color in color_list %}
-                <option>{{ color }}</option>
-            {% endfor %}
-        </select>
-        <select class="form-select" name="type" required>
-            <option disabled selected>Выберите тип одежды</option>
-            {% for type in type_list %}
-                <option>{{ type }}</option>
-            {% endfor %}
-        </select>
-        <select class="form-select" name="sex" required>
-            <option disabled selected>Выберите пол</option>
-            {% for sex in sex_list %}
-                <option>{{ sex }}</option>
-            {% endfor %}
-        </select>
-        <input type="file" name="images" multiple accept="image/png,image/jpeg"><br>
+        <div class="form-group">
+            <input class="form-control" placeholder="Введите артикул" name="article" type="text">
+            <div class="form-errors">
+                {% for error in form.vendor_code.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Введите название" name="name" type="text">
+            <div class="form-errors">
+                {% for error in form.name.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Введите описание" name="description" type="text">
+            <div class="form-errors">
+                {% for error in form.description.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Введите цену" name="price" type="number">
+            <div class="form-errors">
+                {% for error in form.price.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Введите количество на складе" name="amount" type="number">
+            <div class="form-errors">
+                {% for error in form.amount.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <select class="form-select" name="brand" required>
+                <option disabled selected>Выберите бренд</option>
+                {% for brand in brand_list %}
+                    <option>{{ brand }}</option>
+                {% endfor %}
+            </select>
+            <div class="form-errors">
+                {% for error in form.brand.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <select class="form-select" name="material" required>
+                <option disabled selected>Выберите материал</option>
+                {% for material in material_list %}
+                    <option>{{ material }}</option>
+                {% endfor %}
+            </select>
+            <div class="form-errors">
+                {% for error in form.material.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <select class="form-select" name="color" required>
+                <option disabled selected>Выберите цвет</option>
+                {% for color in color_list %}
+                    <option>{{ color }}</option>
+                {% endfor %}
+            </select>
+            <div class="form-errors">
+                {% for error in form.color.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <select class="form-select" name="type" required>
+                <option disabled selected>Выберите тип одежды</option>
+                {% for type in type_list %}
+                    <option>{{ type }}</option>
+                {% endfor %}
+            </select>
+            <div class="form-errors">
+                {% for error in form.cloth_type.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <select class="form-select" name="sex" required>
+                <option disabled selected>Выберите пол</option>
+                {% for sex in sex_list %}
+                    <option>{{ sex }}</option>
+                {% endfor %}
+            </select>
+            <div class="form-errors">
+                {% for error in form.sex.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="file" name="images" multiple accept="image/png,image/jpeg"><br>
+            <div class="form-errors">
+                {% for error in form.pictures.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </div>
+        </div>
+
         <button type="submit" class="btn btn-primary">Добавить</button>
     </form>
 </div>
