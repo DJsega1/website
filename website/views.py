@@ -1,4 +1,4 @@
-from website import __init__
+from website import app
 
 
 @app.route("/test_view")

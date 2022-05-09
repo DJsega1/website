@@ -29,3 +29,6 @@ import website.forms
 import website.utils
 
 db.create_all(app=app)
+
+if __name__ == "__main__":
+    app.run(port=5000, threaded=True)

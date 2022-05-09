@@ -4,7 +4,7 @@ from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from website.models import User
 from website import db
-from website import __init__
+from website import app
 from website.forms import RegisterForm, LoginForm
 from website.utils.additional_functions import no_cache
 import uuid
