@@ -74,7 +74,7 @@ class Size(db.Model):
 class Item(db.Model):
     article = db.Column(db.Integer, primary_key=True, autoincrement=True,
                         unique=True)
-    name = db.Column(db.String(100), unique=True)
+    name = db.Column(db.String(100))
     description = db.Column(db.String)
     brand = db.Column(db.String(100), db.ForeignKey('brand.id'), nullable=False)
     type = db.Column(db.String(100), db.ForeignKey('type.id'), nullable=False)
