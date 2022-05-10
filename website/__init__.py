@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -34,4 +36,5 @@ import website.utils
 db.create_all(app=app)
 
 if __name__ == "__main__":
-    app.run()
+    port_nr = int(os.environ.get("PORT", 5001))
+    app.run(port=port_nr)
