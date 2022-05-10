@@ -1,1 +1,1 @@
-web:python website/__init__.py
+web: python website/__init__.py
