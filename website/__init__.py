@@ -23,7 +23,6 @@ app.register_blueprint(shop_blueprint)
 from website.blueprints.admin import admin as admin_blueprint
 app.register_blueprint(admin_blueprint)
 
-import website.views
 import website.models
 import website.forms
 import website.utils
