@@ -15,12 +15,16 @@ migrate = Migrate(app, db)
 db.init_app(app)
 
 from website.blueprints.main import main as main_blueprint
+
 app.register_blueprint(main_blueprint)
 from website.blueprints.auth import auth as auth_blueprint
+
 app.register_blueprint(auth_blueprint)
 from website.blueprints.shop import shop as shop_blueprint
+
 app.register_blueprint(shop_blueprint)
 from website.blueprints.admin import admin as admin_blueprint
+
 app.register_blueprint(admin_blueprint)
 
 import website.models
@@ -30,4 +34,4 @@ import website.utils
 db.create_all(app=app)
 
 if __name__ == "__main__":
-    app.run(port=5000, threaded=True)
+    app.run(port=8080, host='127.0.0.1', debug=True)
