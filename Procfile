@@ -1,1 +1,1 @@
-worker: python website/__init__.py -p $PORT
+worker: python app.py -p $PORT

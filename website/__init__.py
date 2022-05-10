@@ -35,6 +35,4 @@ import website.utils
 
 db.create_all(app=app)
 
-if __name__ == "__main__":
-    port_nr = os.getenv('PORT', default=8000)
-    app.run(port=port_nr)
+
